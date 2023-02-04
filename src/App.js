@@ -1,9 +1,9 @@
 import React from "react";
 import stl from "./App.module.css";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfilePage from "./components/Profile/ProfilePage";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
-import Dialogs from "./components/Dialogs/Dialogs";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Sett from "./components/Sett/Sett";
@@ -16,7 +16,10 @@ function App(props) {
       <Sidebar store={props.store} />
       <div className={stl.appWrapperContent}>
         <Routes>
-          <Route path="/Dialogs" element={<Dialogs store={props.store} />} />
+          <Route
+            path="/Dialogs"
+            element={<DialogsContainer store={props.store} />}
+          />
           <Route
             path="/ProfilePage"
             element={<ProfilePage store={props.store} />}

@@ -2,34 +2,23 @@ import stl from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {
-  sendMessageActionCreator,
-  newMessageTextActionCreator,
-} from "../../redux/store";
 
 function Dialogs(props) {
-  let dialogsEl = props.store
-    .getState()
-    .messagesPage.dialogsData.map((name) => (
-      <DialogItem id={name.id} name={name.name} url={name.url} />
-    ));
+  let dialogsEl = props.dialogsData.map((name) => (
+    <DialogItem id={name.id} name={name.name} url={name.url} />
+  ));
 
-  let messagesEl = props.store
-    .getState()
-    .messagesPage.messagesData.map((mess) => (
-      <Message id={mess.id} text={mess.messageText} />
-    ));
-
-  //let newMessageElement = React.createRef();
+  let messagesEl = props.messagesData.map((mess) => (
+    <Message id={mess.id} text={mess.messageText} />
+  ));
 
   function onSendMessageClick() {
-    props.store.dispatch(sendMessageActionCreator());
+    props.sendMessage();
   }
 
   function onTextMessageChange(event) {
     let message = event.target.value;
-    //let message = newMessageElement.current.value;
-    props.store.dispatch(newMessageTextActionCreator(message));
+    props.updateMessageText(message);
   }
 
   return (
@@ -39,12 +28,11 @@ function Dialogs(props) {
         {messagesEl}
         <div>
           <textarea
-            //ref={newMessageElement}
             className={stl.enterMessage}
             onChange={onTextMessageChange}
             cols="80"
             rows="4"
-            value={props.store.getState().messagesPage.newMessageText}
+            value={props.newMessageText}
             name="entermessage"
             placeholder="Enter yor message..."
           />
