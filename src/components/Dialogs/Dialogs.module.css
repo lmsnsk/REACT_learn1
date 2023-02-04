@@ -1,0 +1,28 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+}
+
+.dialogsItems {
+  background-color: rgb(255, 255, 255);
+}
+
+.enterMessage {
+  margin-top: 20px;
+  display: block;
+  background-color: rgb(220, 220, 220);
+  border-width: 0;
+}
+
+.btn {
+  background-color: green;
+  border-width: 0;
+  font-size: 20px;
+  color: white;
+  float: right;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  color: black;
+}

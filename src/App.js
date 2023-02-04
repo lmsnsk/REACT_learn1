@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import stl from "./App.module.css";
+import ProfilePage from "./components/Profile/ProfilePage";
+import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Dialogs from "./components/Dialogs/Dialogs";
+import Music from "./components/Music/Music";
+import News from "./components/News/News";
+import Sett from "./components/Sett/Sett";
+import { Route, Routes } from "react-router-dom";
 
-function App() {
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={stl.appWrapper}>
+      <Header />
+      <Sidebar store={props.store} />
+      <div className={stl.appWrapperContent}>
+        <Routes>
+          <Route path="/Dialogs" element={<Dialogs store={props.store} />} />
+          <Route
+            path="/ProfilePage"
+            element={<ProfilePage store={props.store} />}
+          />
+          <Route path="/News" element={<News />} />
+          <Route path="/Music" element={<Music />} />
+          <Route path="/Sett" element={<Sett />} />
+        </Routes>
+      </div>
     </div>
   );
 }

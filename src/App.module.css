@@ -1,0 +1,17 @@
+p {
+  margin: 0;
+}
+
+.appWrapper {
+  display: grid;
+  grid-template-areas: "head head" "side cont";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
+  max-width: 1024px;
+  margin: 0px auto;
+}
+
+.appWrapperContent {
+  grid-area: cont;
+}

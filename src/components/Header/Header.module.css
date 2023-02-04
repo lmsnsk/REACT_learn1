@@ -1,0 +1,15 @@
+.header {
+  grid-area: head;
+  background-color: green;
+  vertical-align: middle;
+  padding-top: 5px;
+}
+
+.logoLink {
+  display: inline-block;
+}
+
+.logoimg {
+  height: 50px;
+  pointer-events: none;
+}
