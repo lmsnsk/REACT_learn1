@@ -33,23 +33,21 @@ let initialState = {
 
 function profileReducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_POST: {
+    case ADD_POST:
       let newPost = {
         id: 5,
         likesCount: 0,
         text: state.newPostText,
         url: "https://www.meme-arsenal.com/memes/50569ac974c29121ff9075e45a334942.jpg",
       };
-      let stateCopy = { ...state };
-      stateCopy.postsData = [...state.postsData];
-      stateCopy.postsData.push(newPost);
-      stateCopy.newPostText = "";
-      return stateCopy;
-    }
+      return {
+        ...state,
+        newPostText: "",
+        postsData: [...state.postsData, newPost],
+      };
+
     case NEW_POST_TEXT: {
-      let stateCopy = { ...state };
-      stateCopy.newPostText = action.newText;
-      return stateCopy;
+      return { ...state, newPostText: action.newText };
     }
     default:
       return state;
@@ -57,3 +55,11 @@ function profileReducer(state = initialState, action) {
 }
 
 export default profileReducer;
+
+export function addPostActionCreator() {
+  return { type: ADD_POST };
+}
+
+export function newPostTextActionCreator(text) {
+  return { type: NEW_POST_TEXT, newText: text };
+}

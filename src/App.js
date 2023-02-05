@@ -8,6 +8,7 @@ import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Sett from "./components/Sett/Sett";
 import { Route, Routes } from "react-router-dom";
+import UsersContainer from "./components/Users/UsersContainer";
 
 function App(props) {
   return (
@@ -27,6 +28,7 @@ function App(props) {
           <Route path="/News" element={<News />} />
           <Route path="/Music" element={<Music />} />
           <Route path="/Sett" element={<Sett />} />
+          <Route path="/Users" element={<UsersContainer />} />
         </Routes>
       </div>
     </div>

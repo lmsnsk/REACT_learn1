@@ -9,6 +9,7 @@ function MyPosts(props) {
       likesCount={userPost.likesCount}
       text={userPost.text}
       url={userPost.url}
+      key={userPost.id}
     />
   ));
 

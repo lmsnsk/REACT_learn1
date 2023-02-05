@@ -5,7 +5,12 @@ function Friends(props) {
   let friendsElemets = props.store
     .getState()
     .messagesPage.dialogsData.map((friend) => (
-      <Friend id={friend.id} name={friend.name} url={friend.url} />
+      <Friend
+        id={friend.id}
+        name={friend.name}
+        url={friend.url}
+        key={friend.id}
+      />
     ));
   return <div className={stl.friendsBox}> {friendsElemets}</div>;
 }

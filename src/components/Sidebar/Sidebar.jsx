@@ -46,6 +46,16 @@ function Sidebar(props) {
             Music
           </NavLink>
         </li>
+        <li className={stl.listnavpoint}>
+          <NavLink
+            to="/Users"
+            className={(navData) =>
+              navData.isActive ? stl.active : stl.listnavpoint
+            }
+          >
+            Users
+          </NavLink>
+        </li>
         <hr />
         <li className={stl.listnavpoint}>
           <NavLink

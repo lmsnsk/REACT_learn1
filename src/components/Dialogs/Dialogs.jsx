@@ -5,11 +5,11 @@ import React from "react";
 
 function Dialogs(props) {
   let dialogsEl = props.dialogsData.map((name) => (
-    <DialogItem id={name.id} name={name.name} url={name.url} />
+    <DialogItem id={name.id} name={name.name} url={name.url} key={name.id} />
   ));
 
   let messagesEl = props.messagesData.map((mess) => (
-    <Message id={mess.id} text={mess.messageText} />
+    <Message id={mess.id} text={mess.messageText} key={mess.id} />
   ));
 
   function onSendMessageClick() {
