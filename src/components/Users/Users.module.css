@@ -29,3 +29,6 @@
   display: flex;
   justify-content: space-between;
 }
+.loc {
+  text-align: right;
+}

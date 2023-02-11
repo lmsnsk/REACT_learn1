@@ -7,8 +7,8 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Sett from "./components/Sett/Sett";
-import { Route, Routes } from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
+import { Route, Routes } from "react-router-dom";
 
 function App(props) {
   return (

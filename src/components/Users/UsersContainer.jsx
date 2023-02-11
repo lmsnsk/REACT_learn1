@@ -22,6 +22,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
+let UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
 
 export default UsersContainer;
