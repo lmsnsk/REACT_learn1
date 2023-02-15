@@ -4,22 +4,16 @@ import React from "react";
 
 function MyPosts(props) {
   let postElemets = props.postsData.map((userPost) => (
-    <Post
-      id={userPost.id}
-      likesCount={userPost.likesCount}
-      text={userPost.text}
-      url={userPost.url}
-      key={userPost.id}
-    />
+    <Post id={userPost.id} likesCount={userPost.likesCount} text={userPost.text} url={userPost.url} key={userPost.id} />
   ));
 
-  function onAddPost() {
+  function addPost() {
     props.addPost();
   }
 
-  function onPostChange(event) {
+  function printNewPostText(event) {
     let text = event.target.value;
-    props.updateNewText(text);
+    props.printNewPostText(text);
   }
 
   return (
@@ -27,7 +21,7 @@ function MyPosts(props) {
       <p className={stl.poststitle}>My posts</p>
       <div>
         <textarea
-          onChange={onPostChange}
+          onChange={printNewPostText}
           value={props.newPostText}
           className={stl.input}
           name="enterpost"
@@ -36,7 +30,7 @@ function MyPosts(props) {
         />
       </div>
       <div>
-        <button className={stl.btn} onClick={onAddPost}>
+        <button className={stl.btn} onClick={addPost}>
           Send post
         </button>
       </div>

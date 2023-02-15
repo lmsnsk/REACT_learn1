@@ -1,46 +1,63 @@
-import axios from "axios";
+import React from "react";
 import stl from "./Users.module.css";
 import userPic from "./../../../src/assets/images/149071.png";
-import React from "react";
+import { NavLink } from "react-router-dom";
 
-class Users extends React.Component {
-  componentDidMount() {
-    axios.get("https://social-network.samuraijs.com/api/1.0/users").then((response) => {
-      this.props.setUsers(response.data.items);
-    });
+let Users = (props) => {
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+  let pages = [];
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
   }
-  render() {
-    return (
-      <div>
-        {this.props.users.map((user) => (
-          <div className={stl.main} key={user.id}>
-            <div className={stl.avaTitle}>
-              <div className={stl.ava}>
+  return (
+    <div>
+      <div className={stl.switcher}>
+        {pages.map((p) => {
+          return (
+            <span
+              className={props.currentPage === p && stl.selectedPage}
+              onClick={(e) => {
+                props.onPageChanged(p);
+              }}
+            >
+              {p}
+            </span>
+          );
+        })}
+      </div>
+
+      {props.users.map((user) => (
+        <div className={stl.main} key={user.id}>
+          <div className={stl.avaTitle}>
+            <div className={stl.ava}>
+              <NavLink to={"/ProfilePage/" + user.id}>
                 <img src={user.photos.small != null ? user.photos.small : userPic} alt="avatar" />
-              </div>
-              <div className={stl.btn}>
-                {user.followed ? (
-                  <button onClick={() => this.props.unfollow(user.id)}>Unfollow</button>
-                ) : (
-                  <button onClick={() => this.props.follow(user.id)}>Follow</button>
-                )}
-              </div>
+              </NavLink>
             </div>
-            <div className={stl.descriptionTitle}>
-              <div className={stl.name}>
-                <div>{user.name}</div>
-                <div>{user.status}</div>
-              </div>
-              <div className={stl.loc}>
-                <div>{"user.location.city"},</div>
-                <div>{"user.location.country"}</div>
-              </div>
+            <div className={stl.btn}>
+              {user.followed ? (
+                <button onClick={() => props.unfollow(user.id)}>Unfollow</button>
+              ) : (
+                <button onClick={() => props.follow(user.id)}>Follow</button>
+              )}
             </div>
           </div>
-        ))}
-      </div>
-    );
-  }
-}
+          <div className={stl.descriptionTitle}>
+            <div>
+              <NavLink to={"/ProfilePage"}>
+                <div className={stl.name}>{user.name}</div>
+              </NavLink>
+              <div className={stl.status}>{user.status}</div>
+            </div>
+            <div className={stl.loc}>
+              <div>{"user.location.city"},</div>
+              <div>{"user.location.country"}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default Users;

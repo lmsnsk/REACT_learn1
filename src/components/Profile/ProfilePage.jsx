@@ -6,7 +6,7 @@ import stl from "./ProfilePage.module.css";
 function ProfilePage(props) {
   return (
     <div className={stl.div}>
-      <ProfileInfo />
+      <ProfileInfo profile={props.profile} />
       <MyPostsContainer store={props.store} />
     </div>
   );

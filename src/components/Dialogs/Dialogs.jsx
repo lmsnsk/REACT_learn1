@@ -8,15 +8,13 @@ function Dialogs(props) {
     <DialogItem id={name.id} name={name.name} url={name.url} key={name.id} />
   ));
 
-  let messagesEl = props.messagesData.map((mess) => (
-    <Message id={mess.id} text={mess.messageText} key={mess.id} />
-  ));
+  let messagesEl = props.messagesData.map((mess) => <Message id={mess.id} text={mess.messageText} key={mess.id} />);
 
-  function onSendMessageClick() {
+  function sendMessage() {
     props.sendMessage();
   }
 
-  function onTextMessageChange(event) {
+  function updateMessageText(event) {
     let message = event.target.value;
     props.updateMessageText(message);
   }
@@ -29,7 +27,7 @@ function Dialogs(props) {
         <div>
           <textarea
             className={stl.enterMessage}
-            onChange={onTextMessageChange}
+            onChange={updateMessageText}
             cols="80"
             rows="4"
             value={props.newMessageText}
@@ -37,7 +35,7 @@ function Dialogs(props) {
             placeholder="Enter yor message..."
           />
         </div>
-        <button className={stl.btn} onClick={onSendMessageClick}>
+        <button className={stl.btn} onClick={sendMessage}>
           Send
         </button>
       </div>

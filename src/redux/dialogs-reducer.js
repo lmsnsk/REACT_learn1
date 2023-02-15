@@ -62,10 +62,10 @@ function dialogsReducer(state = initialState, action) {
 
 export default dialogsReducer;
 
-export function sendMessageActionCreator() {
+export function sendMessage() {
   return { type: SEND_MESSAGE };
 }
 
-export function newMessageTextActionCreator(message) {
+export function updateMessageText(message) {
   return { type: NEW_MESSAGE_TEXT, newMessage: message };
 }

@@ -1,6 +1,16 @@
+import Preloader from "../../common/Preloader/Preloader";
 import stl from "./ProfileInfo.module.css";
+import findjob from "../../../assets/images/findjob.jpg";
 
 function ProfileInfo(props) {
+  if (!props.profile) {
+    return <Preloader />;
+  }
+  let isFindingJob = () => {
+    if (props.profile.lookingForAJob) {
+      return <img className={stl.jobImg} src={findjob} alt="finding job" />;
+    }
+  };
   return (
     <div>
       <div>
@@ -11,14 +21,11 @@ function ProfileInfo(props) {
         />
       </div>
       <div className={stl.profile}>
-        <img
-          className={stl.contentimg}
-          src="https://www.thisiscolossal.com/wp-content/uploads/2019/02/moon_crop.jpg"
-          alt="content-img"
-        />
+        <img className={stl.contentimg} src={props.profile.photos.large} alt="content-img" />
         <div className={stl.description}>
-          <h2>Это луна</h2>
-          <p className={stl.decrtext}>Здесь всякое описание этой луны</p>
+          <h2>{props.profile.fullName}</h2>
+          <div>{isFindingJob()}</div>
+          <p className={stl.decrtext}>{props.profile.lookingForAJobDescription}</p>
           <p className={stl.decrtext}>Ей очень много лет</p>
           <p className={stl.decrtext}>И у нее нет телефона</p>
         </div>
