@@ -18,7 +18,7 @@ function App(props) {
       <div className={stl.appWrapperContent}>
         <Routes>
           <Route path="/Dialogs" element={<DialogsContainer store={props.store} />} />
-          <Route path="/ProfilePage/*" element={<ProfilePageContainer store={props.store} />} />
+          <Route path="/ProfilePage/:userId?" element={<ProfilePageContainer store={props.store} />} />
           <Route path="/News" element={<News />} />
           <Route path="/Music" element={<Music />} />
           <Route path="/Sett" element={<Sett />} />

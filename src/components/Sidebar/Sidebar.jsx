@@ -7,63 +7,33 @@ function Sidebar(props) {
     <nav className={stl.sidebar}>
       <ul className={stl.listnav}>
         <li className={stl.listnavpoint}>
-          <NavLink
-            to="/ProfilePage"
-            className={(navData) =>
-              navData.isActive ? stl.active : stl.listnavpoint
-            }
-          >
+          <NavLink to="/ProfilePage" className={(navData) => (navData.isActive ? stl.active : stl.listnavpoint)}>
             Profile
           </NavLink>
         </li>
         <li className={stl.listnavpoint}>
-          <NavLink
-            to="/Dialogs"
-            className={(navData) =>
-              navData.isActive ? stl.active : stl.listnavpoint
-            }
-          >
+          <NavLink to="/Dialogs" className={(navData) => (navData.isActive ? stl.active : stl.listnavpoint)}>
             Messages
           </NavLink>
         </li>
         <li className={stl.listnavpoint}>
-          <NavLink
-            to="/News"
-            className={(navData) =>
-              navData.isActive ? stl.active : stl.listnavpoint
-            }
-          >
+          <NavLink to="/News" className={(navData) => (navData.isActive ? stl.active : stl.listnavpoint)}>
             News
           </NavLink>
         </li>
         <li className={stl.listnavpoint}>
-          <NavLink
-            to="/Music"
-            className={(navData) =>
-              navData.isActive ? stl.active : stl.listnavpoint
-            }
-          >
+          <NavLink to="/Music" className={(navData) => (navData.isActive ? stl.active : stl.listnavpoint)}>
             Music
           </NavLink>
         </li>
         <li className={stl.listnavpoint}>
-          <NavLink
-            to="/Users"
-            className={(navData) =>
-              navData.isActive ? stl.active : stl.listnavpoint
-            }
-          >
+          <NavLink to="/Users" className={(navData) => (navData.isActive ? stl.active : stl.listnavpoint)}>
             Users
           </NavLink>
         </li>
         <hr />
         <li className={stl.listnavpoint}>
-          <NavLink
-            to="/Sett"
-            className={(navData) =>
-              navData.isActive ? stl.active : stl.listnavpoint
-            }
-          >
+          <NavLink to="/Sett" className={(navData) => (navData.isActive ? stl.active : stl.listnavpoint)}>
             Settings
           </NavLink>
         </li>
