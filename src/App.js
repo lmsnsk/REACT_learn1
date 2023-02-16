@@ -2,18 +2,18 @@ import React from "react";
 import stl from "./App.module.css";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfilePageContainer from "./components/Profile/ProfilePageContainer";
-import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
 import Sett from "./components/Sett/Sett";
 import UsersContainer from "./components/Users/UsersContainer";
 import { Route, Routes } from "react-router-dom";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 function App(props) {
   return (
     <div className={stl.appWrapper}>
-      <Header />
+      <HeaderContainer store={props.store} />
       <Sidebar store={props.store} />
       <div className={stl.appWrapperContent}>
         <Routes>

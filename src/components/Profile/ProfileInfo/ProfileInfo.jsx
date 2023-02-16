@@ -26,8 +26,6 @@ function ProfileInfo(props) {
           <h2>{props.profile.fullName}</h2>
           <div>{isFindingJob()}</div>
           <p className={stl.decrtext}>{props.profile.lookingForAJobDescription}</p>
-          <p className={stl.decrtext}>Ей очень много лет</p>
-          <p className={stl.decrtext}>И у нее нет телефона</p>
         </div>
       </div>
     </div>
