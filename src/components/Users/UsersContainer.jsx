@@ -2,35 +2,23 @@ import Users from "./Users";
 import Preloader from "./../common/Preloader/Preloader";
 import { connect } from "react-redux";
 import {
+  followSuccess,
+  unfollowSuccess,
+  setCurrentPage,
+  toggleFollowing,
   follow,
   unfollow,
-  setUsers,
-  setCurrentPage,
-  setTotalUsersCounts,
-  toggleFetching,
-  toggleFollowing,
 } from "../../redux/users-reducer";
 import React from "react";
-import { userAPI } from "../../api/api";
+import { getUsers } from "../../redux/users-reducer";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.toggleFetching(true);
-    userAPI.getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-      this.props.toggleFetching(false);
-      this.props.setUsers(data.items);
-      this.props.setTotalUsersCounts(data.totalCount);
-    });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.toggleFetching(true);
-    this.props.setCurrentPage(pageNumber);
-    userAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
-      this.props.toggleFetching(false);
-      this.props.setUsers(data.items);
-      this.props.setTotalUsersCounts(data.totalCount);
-    });
+    this.props.getUsers(pageNumber, this.props.pageSize);
   };
 
   render() {
@@ -43,6 +31,8 @@ class UsersContainer extends React.Component {
           pageSize={this.props.pageSize}
           currentPage={this.props.currentPage}
           users={this.props.users}
+          followSuccess={this.props.followSuccess}
+          unfollowSuccess={this.props.unfollowSuccess}
           follow={this.props.follow}
           unfollow={this.props.unfollow}
           key={this.props.currentPage}
@@ -77,11 +67,11 @@ function mapStateToProps(state) {
 // }
 
 export default connect(mapStateToProps, {
+  followSuccess,
+  unfollowSuccess,
+  setCurrentPage,
+  toggleFollowing,
+  getUsers,
   follow,
   unfollow,
-  setUsers,
-  setCurrentPage,
-  setTotalUsersCounts,
-  toggleFetching,
-  toggleFollowing,
 })(UsersContainer);

@@ -1,3 +1,5 @@
+import { userAPI } from "../api/api";
+
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
@@ -52,11 +54,11 @@ function usersReducer(state = initialState, action) {
   }
 }
 
-export function follow(userId) {
+export function followSuccess(userId) {
   return { type: FOLLOW, userId };
 }
 
-export function unfollow(userId) {
+export function unfollowSuccess(userId) {
   return { type: UNFOLLOW, userId };
 }
 
@@ -81,3 +83,39 @@ export function toggleFollowing(followingInProgress) {
 }
 
 export default usersReducer;
+
+//ThunkCreator
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toggleFetching(true));
+    userAPI.getUsers(currentPage, pageSize).then((data) => {
+      dispatch(toggleFetching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCounts(data.totalCount));
+    });
+  };
+};
+
+export const unfollow = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowing(true));
+    userAPI.removeFollow(userId).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(unfollowSuccess(userId));
+      }
+      dispatch(toggleFollowing(false));
+    });
+  };
+};
+
+export const follow = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowing(true));
+    userAPI.getFollw(userId).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(followSuccess(userId));
+      }
+      dispatch(toggleFollowing(false));
+    });
+  };
+};
