@@ -1,9 +1,10 @@
 import React from "react";
 import ProfilePage from "./ProfilePage";
 import { connect } from "react-redux";
-import { setUserProfile } from "../../redux/profile-reducer";
+import { getProfile } from "../../redux/profile-reducer";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { userAPI } from "../../api/api";
+import { withAuthRedirect } from "../HOC/withAuthRedirect";
+import { compose } from "redux";
 
 class ProfilePageContainer extends React.Component {
   componentDidMount() {
@@ -11,12 +12,8 @@ class ProfilePageContainer extends React.Component {
     if (!userId) {
       userId = 2;
     }
-
-    userAPI.getProfile(userId).then((data) => {
-      this.props.setUserProfile(data);
-    });
+    this.props.getProfile(userId);
   }
-
   render() {
     return (
       <div>
@@ -37,8 +34,7 @@ function withRouter(Component) {
     let params = useParams();
     return <Component {...props} router={{ location, navigate, params }} />;
   }
-
   return ComponentWithRouterProp;
 }
 
-export default connect(mapStateToProps, { setUserProfile })(withRouter(ProfilePageContainer));
+export default compose(connect(mapStateToProps, { getProfile }), withAuthRedirect, withRouter)(ProfilePageContainer);

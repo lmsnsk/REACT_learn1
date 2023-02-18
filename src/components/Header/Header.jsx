@@ -4,14 +4,14 @@ import { NavLink } from "react-router-dom";
 function Header(props) {
   return (
     <header className={stl.header}>
-      <a className={stl.logoLink} href="#">
+      <a className={stl.logoLink} href="#1">
         <img
           className={stl.logoimg}
           src="https://logos-world.net/wp-content/uploads/2020/04/Huawei-Logo.png"
           alt="logo"
         />
       </a>
-      <div className={stl.loginBlock}>{props.isAuth ? props.login : <NavLink to="/login">Log in</NavLink>}</div>
+      <div className={stl.loginBlock}>{props.isAuth ? props.login : <NavLink to="/Login">Log in</NavLink>}</div>
     </header>
   );
 }

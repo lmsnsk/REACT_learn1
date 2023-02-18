@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.form {
+  background-color: #c5c5c5;
+  width: 400px;
+  height: 300px;
+}
+
+.inputField {
+  margin: 20px;
+}
+
+.login,
+.password {
+  display: block;
+}
+
+span {
+  display: block;
+  font-size: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}

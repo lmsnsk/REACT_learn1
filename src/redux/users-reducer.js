@@ -111,7 +111,7 @@ export const unfollow = (userId) => {
 export const follow = (userId) => {
   return (dispatch) => {
     dispatch(toggleFollowing(true));
-    userAPI.getFollw(userId).then((data) => {
+    userAPI.getFollow(userId).then((data) => {
       if (data.resultCode === 0) {
         dispatch(followSuccess(userId));
       }

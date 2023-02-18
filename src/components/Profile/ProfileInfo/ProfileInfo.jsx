@@ -1,6 +1,7 @@
 import Preloader from "../../common/Preloader/Preloader";
 import stl from "./ProfileInfo.module.css";
 import findjob from "../../../assets/images/findjob.jpg";
+import userEmptyAvatar from "../../../assets/images/149071.png";
 
 function ProfileInfo(props) {
   if (!props.profile) {
@@ -21,7 +22,11 @@ function ProfileInfo(props) {
         />
       </div>
       <div className={stl.profile}>
-        <img className={stl.contentimg} src={props.profile.photos.large} alt="content-img" />
+        {props.profile.photos.large !== null ? (
+          <img className={stl.contentimg} src={props.profile.photos.large} alt="content-img" />
+        ) : (
+          <img className={stl.contentimg} src={userEmptyAvatar} alt="content-img" />
+        )}
         <div className={stl.description}>
           <h2>{props.profile.fullName}</h2>
           <div>{isFindingJob()}</div>

@@ -9,6 +9,7 @@ import Sett from "./components/Sett/Sett";
 import UsersContainer from "./components/Users/UsersContainer";
 import { Route, Routes } from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 function App(props) {
   return (
@@ -23,6 +24,7 @@ function App(props) {
           <Route path="/Music" element={<Music />} />
           <Route path="/Sett" element={<Sett />} />
           <Route path="/Users" element={<UsersContainer store={props.store} />} />
+          <Route path="/Login" element={<Login />} />
         </Routes>
       </div>
     </div>

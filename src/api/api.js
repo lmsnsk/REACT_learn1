@@ -16,7 +16,13 @@ export const userAPI = {
   removeFollow(id) {
     return instatce.delete(`follow/${id}`).then((response) => response.data);
   },
-  getFollw(id) {
+  getFollow(id) {
     return instatce.post(`follow/${id}`, {}).then((response) => response.data);
+  },
+};
+
+export const authAPI = {
+  authing() {
+    return instatce.get(`auth/me`).then((response) => response.data);
   },
 };
