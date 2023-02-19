@@ -10,14 +10,23 @@ export const userAPI = {
   getUsers(currentPage = 1, pageSize = 10) {
     return instatce.get(`users?page=${currentPage}&count=${pageSize}`).then((response) => response.data);
   },
-  getProfile(userId) {
-    return instatce.get(`profile/${userId}`).then((response) => response.data);
-  },
   removeFollow(id) {
     return instatce.delete(`follow/${id}`).then((response) => response.data);
   },
   getFollow(id) {
     return instatce.post(`follow/${id}`, {}).then((response) => response.data);
+  },
+};
+
+export const profileAPI = {
+  getProfile(userId) {
+    return instatce.get(`profile/${userId}`).then((response) => response.data);
+  },
+  getStatus(userId) {
+    return instatce.get(`profile/status/${userId}`).then((response) => response.data);
+  },
+  updateStatus(status) {
+    return instatce.put("profile/status", { status: status }).then((response) => response.data);
   },
 };
 

@@ -1,0 +1,12 @@
+span {
+  cursor: inherit;
+  font-size: 18px;
+}
+
+.input {
+  font-size: 18px;
+}
+
+input:active {
+  font-size: 18px;
+}

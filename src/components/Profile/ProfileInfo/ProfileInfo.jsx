@@ -2,6 +2,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import stl from "./ProfileInfo.module.css";
 import findjob from "../../../assets/images/findjob.jpg";
 import userEmptyAvatar from "../../../assets/images/149071.png";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 function ProfileInfo(props) {
   if (!props.profile) {
@@ -14,13 +15,6 @@ function ProfileInfo(props) {
   };
   return (
     <div>
-      <div>
-        <img
-          className={stl.maincontentimg}
-          src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
-          alt="main-content-img"
-        />
-      </div>
       <div className={stl.profile}>
         {props.profile.photos.large !== null ? (
           <img className={stl.contentimg} src={props.profile.photos.large} alt="content-img" />
@@ -28,9 +22,16 @@ function ProfileInfo(props) {
           <img className={stl.contentimg} src={userEmptyAvatar} alt="content-img" />
         )}
         <div className={stl.description}>
-          <h2>{props.profile.fullName}</h2>
-          <div>{isFindingJob()}</div>
-          <p className={stl.decrtext}>{props.profile.lookingForAJobDescription}</p>
+          <div className={stl.avaName}>
+            <h2>{props.profile.fullName}</h2>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+          </div>
+          <div className={stl.job}>
+            <div className={stl.jobImg}>{isFindingJob()}</div>
+            <div>
+              <p className={stl.decrtext}>{props.profile.lookingForAJobDescription}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
