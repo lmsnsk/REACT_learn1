@@ -1,5 +1,5 @@
 import MyPosts from "./MyPosts";
-import { addPost, printNewPostText } from "../../../redux/profile-reducer";
+import { addPost } from "../../../redux/profile-reducer";
 import { connect } from "react-redux";
 
 function mapStateToProps(state) {
@@ -11,5 +11,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   addPost,
-  printNewPostText,
 })(MyPosts);

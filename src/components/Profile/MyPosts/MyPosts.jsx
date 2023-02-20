@@ -1,42 +1,35 @@
 import stl from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import React from "react";
+import { Field, reduxForm } from "redux-form";
 
 function MyPosts(props) {
   let postElemets = props.postsData.map((userPost) => (
     <Post id={userPost.id} likesCount={userPost.likesCount} text={userPost.text} url={userPost.url} key={userPost.id} />
   ));
-
-  function addPost() {
-    props.addPost();
+  function addPost(values) {
+    props.addPost(values.post);
   }
-
-  function printNewPostText(event) {
-    let text = event.target.value;
-    props.printNewPostText(text);
-  }
-
   return (
-    <div className={stl.posts}>
+    <div>
       <p className={stl.poststitle}>My posts</p>
-      <div>
-        <textarea
-          onChange={printNewPostText}
-          value={props.newPostText}
-          className={stl.input}
-          name="enterpost"
-          cols="70"
-          rows="3"
-        />
-      </div>
-      <div>
-        <button className={stl.btn} onClick={addPost}>
-          Send post
-        </button>
-      </div>
+      <AddPostReduxForm onSubmit={addPost} />
       {postElemets}
     </div>
   );
 }
+
+function AddPostsForm(props) {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <Field placeholder={"Enter text..."} component={"textarea"} name={"post"} cols="70" rows="3" />
+      <button className={stl.btn}>Send post</button>
+    </form>
+  );
+}
+
+const AddPostReduxForm = reduxForm({
+  form: "addPost",
+})(AddPostsForm);
 
 export default MyPosts;

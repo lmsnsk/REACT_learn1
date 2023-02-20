@@ -1,7 +1,6 @@
 import { profileAPI } from "../api/api";
 
 const ADD_POST = "ADD-POST";
-const NEW_POST_TEXT = "NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
 
@@ -32,7 +31,6 @@ let initialState = {
       url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5gLH4En3BnVSk8UxNmPTU5DhXTNdK5QJQBw&usqp=CAU",
     },
   ],
-  newPostText: "",
   profile: null,
   status: "",
 };
@@ -43,17 +41,13 @@ function profileReducer(state = initialState, action) {
       let newPost = {
         id: 5,
         likesCount: 0,
-        text: state.newPostText,
+        text: action.newPostText,
         url: "https://www.meme-arsenal.com/memes/50569ac974c29121ff9075e45a334942.jpg",
       };
       return {
         ...state,
-        newPostText: "",
         postsData: [...state.postsData, newPost],
       };
-    case NEW_POST_TEXT: {
-      return { ...state, newPostText: action.newText };
-    }
     case SET_USER_PROFILE: {
       return { ...state, profile: action.profile };
     }
@@ -67,12 +61,8 @@ function profileReducer(state = initialState, action) {
 
 export default profileReducer;
 
-export function addPost() {
-  return { type: ADD_POST };
-}
-
-export function printNewPostText(text) {
-  return { type: NEW_POST_TEXT, newText: text };
+export function addPost(newPostText) {
+  return { type: ADD_POST, newPostText };
 }
 
 function setUserProfile(profile) {

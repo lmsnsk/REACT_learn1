@@ -34,4 +34,7 @@ export const authAPI = {
   authing() {
     return instatce.get(`auth/me`).then((response) => response.data);
   },
+  login(email, password) {
+    return instatce.post(`auth/login`, { email: email, password: password }).then((response) => response.data);
+  },
 };
