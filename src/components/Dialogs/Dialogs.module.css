@@ -1,3 +1,9 @@
+:active,
+:hover,
+:focus {
+  outline: 0;
+}
+
 .dialogs {
   display: grid;
   grid-template-columns: 3fr 7fr;
