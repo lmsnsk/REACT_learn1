@@ -2,10 +2,20 @@
 .formcontrol.error textarea {
   display: inline;
   outline: 1px solid red;
+  margin: 0;
 }
 
 .formcontrol.error span {
-  position: absolute;
+  color: white;
+  background-color: rgba(255, 0, 0, 0.7);
+  font-size: 14px;
+  padding: 2px;
+  border-radius: 3px;
+  cursor: inherit;
+  margin-left: 5px;
+}
+
+.error {
   color: white;
   background-color: rgba(255, 0, 0, 0.7);
   font-size: 14px;

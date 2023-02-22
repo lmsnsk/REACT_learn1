@@ -1,7 +1,11 @@
 import stl from "./Header.module.css";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 
 function Header(props) {
+  const logoutAndRedirect = () => {
+    props.logout();
+    return <Navigate to="/Login" />;
+  };
   return (
     <header className={stl.header}>
       <a className={stl.logoLink} href="#1">
@@ -11,7 +15,18 @@ function Header(props) {
           alt="logo"
         />
       </a>
-      <div className={stl.loginBlock}>{props.isAuth ? props.login : <NavLink to="/Login">Log in</NavLink>}</div>
+      <div className={stl.loginBlock}>
+        {props.isAuth ? (
+          <div>
+            {props.login}
+            <button onClick={logoutAndRedirect} className={stl.logoutBtn}>
+              Logout
+            </button>
+          </div>
+        ) : (
+          <NavLink to="/Login">Log in</NavLink>
+        )}
+      </div>
     </header>
   );
 }
