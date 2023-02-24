@@ -11,6 +11,14 @@ import {
 } from "../../redux/users-reducer";
 import React from "react";
 import { getUsers } from "../../redux/users-reducer";
+import {
+  getAllUsers,
+  getCurrentPage,
+  getFetching,
+  getFollowingInProgress,
+  getPageSize,
+  getTotalUsersCount,
+} from "../../redux/users-selectors";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -42,14 +50,25 @@ class UsersContainer extends React.Component {
   }
 }
 
+// function mapStateToProps(state) {
+//   return {
+//     users: state.usersPage.users,
+//     pageSize: state.usersPage.pageSize,
+//     totalUsersCount: state.usersPage.totalUsersCount,
+//     currentPage: state.usersPage.currentPage,
+//     isFetching: state.usersPage.isFetching,
+//     followingInProgress: state.usersPage.followingInProgress,
+//   };
+// }
+
 function mapStateToProps(state) {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress,
+    users: getAllUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getFetching(state),
+    followingInProgress: getFollowingInProgress(state),
   };
 }
 

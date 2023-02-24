@@ -85,10 +85,11 @@ export function toggleFollowing(followingInProgress) {
 export default usersReducer;
 
 //ThunkCreator
-export const getUsers = (currentPage, pageSize) => {
+export const getUsers = (page, pageSize) => {
   return (dispatch) => {
     dispatch(toggleFetching(true));
-    userAPI.getUsers(currentPage, pageSize).then((data) => {
+    dispatch(setCurrentPage(page));
+    userAPI.getUsers(page, pageSize).then((data) => {
       dispatch(toggleFetching(false));
       dispatch(setUsers(data.items));
       dispatch(setTotalUsersCounts(data.totalCount));
