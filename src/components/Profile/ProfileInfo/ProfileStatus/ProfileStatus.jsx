@@ -1,59 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import stl from "./ProfileStatus.module.css";
 
-class ProfileStatus extends React.Component {
-  state = {
-    editMode: false,
-    status: this.props.status,
+const ProfileStatus = (props) => {
+  let [editMode, setEditMode] = useState(false);
+  let [status, setStatus] = useState(props.status);
+
+  const activateEditMode = () => {
+    setEditMode(true);
   };
 
-  activateEditMode = () => {
-    this.setState({
-      editMode: true,
-    });
+  const deactivateEditMode = () => {
+    setEditMode(false);
+    props.updateStatus(status);
   };
 
-  deactivateEditMode = () => {
-    this.setState({
-      editMode: false,
-    });
-    this.props.updateStatus(this.state.status);
+  const onStatusChange = (e) => {
+    setStatus(e.currentTarget.value);
   };
 
-  onStatusChange = (e) => {
-    this.setState({
-      status: e.currentTarget.value,
-    });
-  };
+  useEffect(() => {
+    setStatus(props.status);
+  }, [props.status]);
 
-  componentDidUpdate(prevState, prevProps) {
-    if (prevState.status !== this.props.status)
-      this.setState({
-        status: this.props.status,
-      });
-  }
-
-  render() {
-    return (
-      <div className={stl.status}>
-        {!this.state.editMode ? (
-          <div>
-            <span onClick={this.activateEditMode}>{this.props.status || "No status:("}</span>
-          </div>
-        ) : (
-          <div>
-            <input
-              onChange={this.onStatusChange}
-              className={stl.input}
-              autoFocus={true}
-              onBlur={this.deactivateEditMode}
-              value={this.state.status}
-            />
-          </div>
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div className={stl.status}>
+      {!editMode ? (
+        <div>
+          <span onClick={activateEditMode}>{props.status || "No status:("}</span>
+        </div>
+      ) : (
+        <div>
+          <input
+            onChange={onStatusChange}
+            className={stl.input}
+            autoFocus={true}
+            onBlur={deactivateEditMode}
+            value={status}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default ProfileStatus;
