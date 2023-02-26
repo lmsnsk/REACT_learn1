@@ -6,7 +6,7 @@ import { Field, reduxForm } from "redux-form";
 import { Textarea } from "../common/FormsControls/FormsControls";
 import { maxLengthCreator, requiredField } from "../../utils/validators";
 
-function Dialogs(props) {
+const Dialogs = React.memo((props) => {
   let dialogsEl = props.dialogsData.map((name) => (
     <DialogItem id={name.id} name={name.name} url={name.url} key={name.id} />
   ));
@@ -24,7 +24,7 @@ function Dialogs(props) {
       <MessageReduxForm onSubmit={addNewMessage} />
     </div>
   );
-}
+});
 
 const AddMessageForm = (props) => {
   return (
