@@ -7,37 +7,46 @@ let instatce = axios.create({
 });
 
 export const userAPI = {
-  getUsers(currentPage = 1, pageSize = 10) {
-    return instatce.get(`users?page=${currentPage}&count=${pageSize}`).then((response) => response.data);
+  async getUsers(currentPage = 1, pageSize = 10) {
+    const response = await instatce.get(`users?page=${currentPage}&count=${pageSize}`);
+    return response.data;
   },
-  removeFollow(id) {
-    return instatce.delete(`follow/${id}`).then((response) => response.data);
+  async removeFollow(id) {
+    const response = await instatce.delete(`follow/${id}`);
+    return response.data;
   },
-  getFollow(id) {
-    return instatce.post(`follow/${id}`, {}).then((response) => response.data);
+  async getFollow(id) {
+    const response = await instatce.post(`follow/${id}`, {});
+    return response.data;
   },
 };
 
 export const profileAPI = {
-  getProfile(userId) {
-    return instatce.get(`profile/${userId}`).then((response) => response.data);
+  async getProfile(userId) {
+    const response = await instatce.get(`profile/${userId}`);
+    return response.data;
   },
-  getStatus(userId) {
-    return instatce.get(`profile/status/${userId}`).then((response) => response.data);
+  async getStatus(userId) {
+    const response = await instatce.get(`profile/status/${userId}`);
+    return response.data;
   },
-  updateStatus(status) {
-    return instatce.put("profile/status", { status: status }).then((response) => response.data);
+  async updateStatus(status) {
+    const response = await instatce.put("profile/status", { status: status });
+    return response.data;
   },
 };
 
 export const authAPI = {
-  authing() {
-    return instatce.get(`auth/me`).then((response) => response.data);
+  async authing() {
+    const response = await instatce.get(`auth/me`);
+    return response.data;
   },
-  login(email, password, rememberMe = false) {
-    return instatce.post(`auth/login`, { email, password, rememberMe }).then((response) => response.data);
+  async login(email, password, rememberMe = false) {
+    const response = await instatce.post(`auth/login`, { email, password, rememberMe });
+    return response.data;
   },
-  logout() {
-    return instatce.delete(`auth/login`).then((response) => response.data);
+  async logout() {
+    const response = await instatce.delete(`auth/login`);
+    return response.data;
   },
 };

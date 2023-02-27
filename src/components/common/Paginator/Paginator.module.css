@@ -1,0 +1,9 @@
+.selectedPage {
+  font-weight: bold;
+}
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
