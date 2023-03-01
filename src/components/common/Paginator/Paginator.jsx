@@ -5,22 +5,36 @@ let Paginator = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
+    if (i < props.currentPage + 5 && i > props.currentPage - 5) pages.push(i);
   }
   return (
     <div className={stl.switcher}>
-      {pages.map((p) => {
+      <button
+        onClick={(e) => {
+          props.onPageChanged(1);
+        }}
+      >
+        &laquo;
+      </button>
+      {pages.map((page) => {
         return (
           <span
-            className={props.currentPage === p && stl.selectedPage}
+            className={props.currentPage === page && stl.selectedPage}
             onClick={(e) => {
-              props.onPageChanged(p);
+              props.onPageChanged(page);
             }}
           >
-            {p}
+            {page}
           </span>
         );
       })}
+      <button
+        onClick={(e) => {
+          props.onPageChanged(pagesCount);
+        }}
+      >
+        &raquo;
+      </button>
     </div>
   );
 };

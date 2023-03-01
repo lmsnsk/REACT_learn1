@@ -3,7 +3,20 @@
 }
 
 .switcher {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+.switcher button {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: rgb(148, 162, 194);
+}
+
+.switcher span {
+  color: rgb(148, 162, 194);
+  margin-right: 3px;
 }

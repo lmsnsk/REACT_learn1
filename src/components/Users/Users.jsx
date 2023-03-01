@@ -20,6 +20,12 @@ let Users = (props) => {
           key={user.id}
         />
       ))}
+      <Paginator
+        currentPage={props.currentPage}
+        onPageChanged={props.onPageChanged}
+        totalUsersCount={props.totalUsersCount}
+        pageSize={props.pageSize}
+      />
     </div>
   );
 };
