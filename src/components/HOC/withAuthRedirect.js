@@ -5,10 +5,10 @@ let mapStateToPropsForRedirect = (state) => ({
   isAuth: state.auth.isAuth,
 });
 
-export const withAuthRedirect = (Componennt) => {
+export const withAuthRedirect = (Component) => {
   const RedirectComponent = (props) => {
     if (!props.isAuth) return <Navigate to="/Login" />;
-    return <Componennt {...props} />;
+    return <Component {...props} />;
   };
 
   return connect(mapStateToPropsForRedirect)(RedirectComponent);

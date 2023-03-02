@@ -1,9 +1,8 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { connect } from "react-redux";
 import { initializeApp } from "./redux/app-reducer";
 import { Route, Routes } from "react-router-dom";
 import stl from "./App.module.css";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import ProfilePageContainer from "./components/Profile/ProfilePageContainer";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Music from "./components/Music/Music";
@@ -13,6 +12,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import Preloader from "./components/common/Preloader/Preloader";
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 
 class App extends React.Component {
   componentDidMount() {
@@ -27,15 +27,23 @@ class App extends React.Component {
           <HeaderContainer store={this.props.store} />
           <Sidebar store={this.props.store} />
           <div className={stl.appWrapperContent}>
-            <Routes>
-              <Route path="/Dialogs" element={<DialogsContainer store={this.props.store} />} />
-              <Route path="/ProfilePage/:userId?" element={<ProfilePageContainer store={this.props.store} />} />
-              <Route path="/News" element={<News />} />
-              <Route path="/Music" element={<Music />} />
-              <Route path="/Sett" element={<Sett />} />
-              <Route path="/Users" element={<UsersContainer store={this.props.store} />} />
-              <Route path="/Login" element={<Login />} />
-            </Routes>
+            <Suspense
+              fallback={
+                <div>
+                  <Preloader />
+                </div>
+              }
+            >
+              <Routes>
+                <Route path="/Dialogs" element={<DialogsContainer store={this.props.store} />} />
+                <Route path="/ProfilePage/:userId?" element={<ProfilePageContainer store={this.props.store} />} />
+                <Route path="/News" element={<News />} />
+                <Route path="/Music" element={<Music />} />
+                <Route path="/Sett" element={<Sett />} />
+                <Route path="/Users" element={<UsersContainer store={this.props.store} />} />
+                <Route path="/Login" element={<Login />} />
+              </Routes>
+            </Suspense>
           </div>
         </div>
       );
